@@ -1,0 +1,147 @@
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 12rem);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.messagesArea {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.messageWrapper {
+  display: flex;
+  gap: 1rem;
+  max-width: 80%;
+}
+
+.userWrapper {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.aiWrapper {
+  align-self: flex-start;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.messageBubble {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.userWrapper .messageBubble {
+  background: var(--primary);
+  color: white;
+  border-bottom-right-radius: 0;
+}
+
+.aiWrapper .messageBubble {
+  background: white;
+  color: var(--foreground);
+  border-bottom-left-radius: 0;
+  border: 1px solid var(--border);
+}
+
+.markdownContent {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.markdownContent p {
+  margin-bottom: 0.75rem;
+}
+
+.markdownContent p:last-child {
+  margin-bottom: 0;
+}
+
+.markdownContent strong {
+  font-weight: 700;
+  color: inherit;
+}
+
+.markdownContent ul, .markdownContent ol {
+  margin-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdownContent li {
+  margin-bottom: 0.25rem;
+}
+
+.markdownContent a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.time {
+  display: block;
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+  opacity: 0.6;
+  text-align: right;
+}
+
+.inputArea {
+  padding: 1.5rem 2rem;
+  background: white;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 1rem;
+}
+
+.input {
+  flex: 1;
+  border: 1px solid var(--border);
+  padding: 0.8rem 1.25rem;
+  border-radius: var(--radius-full);
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  border-color: var(--primary);
+}
+
+.sendBtn {
+  background: var(--primary);
+  color: white;
+  padding: 0 1.5rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s ease;
+}
+
+.sendBtn:hover {
+  background: var(--primary-dark);
+}
+
+.sendIcon {
+  font-size: 1.1rem;
+}

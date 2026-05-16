@@ -1,0 +1,105 @@
+.panel {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: calc(100vh - 12rem);
+  overflow-y: auto;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.progressList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.progressItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--foreground);
+  opacity: 0.6;
+}
+
+.completed {
+  opacity: 1;
+  color: var(--success);
+  font-weight: 600;
+}
+
+.active {
+  opacity: 1;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.checkIcon {
+  font-weight: 800;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0.5rem 0;
+}
+
+.resourceList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.resourceLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--foreground);
+  opacity: 0.8;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.resourceLink:hover {
+  color: var(--primary);
+  opacity: 1;
+}
+
+.recommendationCard {
+  background: white;
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.recommendationCard p {
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.recBtn {
+  width: 100%;
+  background: var(--secondary);
+  color: var(--primary-dark);
+  padding: 0.6rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.8rem;
+  transition: background 0.2s ease;
+}
+
+.recBtn:hover {
+  background: var(--secondary-dark);
+}

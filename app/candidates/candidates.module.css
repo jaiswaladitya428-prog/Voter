@@ -1,0 +1,244 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-dark);
+}
+
+.highlight {
+  color: var(--primary);
+}
+
+.filterBar {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem 2rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 3rem;
+  align-items: center;
+}
+
+.searchGroup {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+}
+
+.searchGroup input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.constituencyGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.constituencyGroup select {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  outline: none;
+}
+
+.resultsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.candidateCard {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cardHeader {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.nameInfo h3 {
+  color: var(--primary-dark);
+  margin-bottom: 0.25rem;
+}
+
+.party {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detailItem {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.manifesto {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+}
+
+.manifesto h4 {
+  font-size: 0.9rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.manifesto p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.7;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.viewMoreBtn {
+  flex: 1;
+  background: var(--primary);
+  color: white;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.compareBtn {
+  flex: 1;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .filterBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modalContent {
+  background: var(--background);
+  width: 90%;
+  max-width: 600px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.modalHeader h2 {
+  font-size: 1.25rem;
+  color: var(--primary-dark);
+  margin: 0;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.25rem;
+  color: var(--foreground);
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.closeBtn:hover {
+  opacity: 1;
+}
+
+.modalBody {
+  padding: 2rem;
+}
+
+.modalBody p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--foreground);
+  opacity: 0.8;
+}
+
+.modalFooter {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  background: var(--surface);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

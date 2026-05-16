@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String   @id @default(cuid())
+  name              String?
+  language          String   @default("english")
+  region            String?
+  registered        Boolean  @default(false)
+  votingProgress    Int      @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  chats             ChatMessage[]
+}
+
+model Election {
+  id          String   @id @default(cuid())
+  title       String
+  date        DateTime
+  phase       Int?
+  constituency String?
+  details     String?
+}
+
+model Candidate {
+  id            String   @id @default(cuid())
+  name          String
+  party         String
+  constituency  String
+  manifesto     String?
+  education     String?
+  background    String?
+  previousPerf  String?
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  text      String
+  sender    String   // "user" or "ai"
+  userId    String
+  user      User     @relation(fields: [userId], references: id)
+  createdAt DateTime @default(now())
+}

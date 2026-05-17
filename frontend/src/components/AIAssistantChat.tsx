@@ -3,11 +3,18 @@
 import { useState } from "react";
 import { MessageSquare, X, Send } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 type Message = {
   role: "user" | "model";
   text: string;
 };
+
+const SYSTEM_PROMPT = `You are the VoterAssist AI, an expert civic assistant specialized in the Indian Election System. 
+Your goal is to provide accurate, unbiased, and easy-to-understand information about voting, elections, voter registration (like Form 6), and required documents. 
+Always refer users to the official Election Commission of India website (https://eci.gov.in/) and the Voters' Services Portal (https://voters.eci.gov.in/) for official actions.
+IMPORTANT: If the user writes in Hindi, you MUST respond entirely in Hindi. If the user writes in English, respond in English.
+Always be polite and helpful. If you don't know the answer, advise the user to consult official ECI resources.`;
 
 export default function AIAssistantChat() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,32 +28,41 @@ export default function AIAssistantChat() {
     if (!input.trim()) return;
 
     const userMessage: Message = { role: "user", text: input };
-    setMessages((prev) => [...prev, userMessage]);
+    const updatedHistory = [...messages, userMessage];
+    setMessages(updatedHistory);
     setInput("");
     setLoading(true);
 
     try {
-      // In a real app, this URL would be from environment variables
-      const response = await fetch("http://localhost:5000/api/ai/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message: userMessage.text,
-          history: messages,
-        }),
+      const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "";
+      if (!apiKey) throw new Error("API key not configured");
+
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+      // Build chat history (excluding initial greeting)
+      const history = messages.slice(1).map((msg) => ({
+        role: msg.role,
+        parts: [{ text: msg.text }],
+      }));
+
+      const chat = model.startChat({
+        history: [
+          { role: "user", parts: [{ text: SYSTEM_PROMPT }] },
+          { role: "model", parts: [{ text: "Understood. I will act as the VoterAssist AI." }] },
+          ...history,
+        ],
       });
 
-      const data = await response.json();
-      
-      setMessages((prev) => [
-        ...prev,
-        { role: "model", text: data.reply || "Sorry, I could not process that request." }
-      ]);
+      const result = await chat.sendMessage(input);
+      const reply = result.response.text();
+
+      setMessages((prev) => [...prev, { role: "model", text: reply }]);
     } catch (error) {
       console.error("Chat error:", error);
       setMessages((prev) => [
         ...prev,
-        { role: "model", text: "There was an error connecting to the server. Please try again later." }
+        { role: "model", text: "Sorry, I could not connect to the AI service. Please check your API key configuration." }
       ]);
     } finally {
       setLoading(false);

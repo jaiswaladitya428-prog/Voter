@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 
     // DO NOT put your real API key in this check! 
     // This condition is meant to throw an error ONLY IF the key is missing or is the default placeholder.
-    if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === "your_api_key_here" || process.env.GEMINI_API_KEY === "") {
+    if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === "AIzaSyAqvthTUN7eqYE4H9d_4tbWRqBDgC3R0TY" || process.env.GEMINI_API_KEY === "") {
       return NextResponse.json(
         { error: "Gemini API key not configured. Please set it in .env file." },
         { status: 500 }

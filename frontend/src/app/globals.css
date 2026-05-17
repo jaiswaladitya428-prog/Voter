@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input, textarea {
+  color: #000000;
+}
+
+/* Google Translate Widget Styling */
+.translate-widget .goog-te-gadget {
+  font-family: inherit !important;
+  font-size: 0 !important;
+}
+
+.translate-widget .goog-te-gadget select {
+  font-size: 0.8rem !important;
+  background-color: rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+  border-radius: 6px !important;
+  padding: 4px 8px !important;
+  cursor: pointer !important;
+  outline: none !important;
+  -webkit-appearance: auto;
+}
+
+.translate-widget .goog-te-gadget select option {
+  color: #000 !important;
+  background: #fff !important;
+}
+
+/* Hide ALL Google Translate UI — we use a custom dropdown instead */
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.skiptranslate,
+.goog-te-gadget img,
+.goog-te-gadget > span,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-aZ2wEe {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.goog-te-combo {
+  visibility: hidden;
+  position: absolute;
+}

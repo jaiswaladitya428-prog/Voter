@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import AIAssistantChat from "@/components/AIAssistantChat";
+import SmartAssistant from "@/components/SmartAssistant";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const geistSans = Geist({
@@ -46,7 +46,7 @@ export default function RootLayout({
         <main className="flex-1 max-w-7xl mx-auto w-full p-4 sm:p-6 lg:p-8">
           {children}
         </main>
-        <AIAssistantChat />
+        <SmartAssistant />
         <script
           dangerouslySetInnerHTML={{
             __html: `
